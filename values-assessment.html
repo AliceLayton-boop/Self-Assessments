@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Values Self-Assessment</title>
+    <style>
+        .values-assessment-container {
+            max-width: 800px;
+            margin: 0 auto;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            padding: 20px;
+        }
+        
+        .assessment-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .assessment-title {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .instruction {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 2px solid #4a90e2;
+        }
+        
+        .instruction h3 {
+            margin-top: 0;
+            color: #4a90e2;
+        }
+        
+        .values-grid {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .value-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            background: #f9f9f9;
+            transition: all 0.2s ease;
+        }
+        
+        .value-item:hover {
+            border-color: #4a90e2;
+            background: #f0f8ff;
+        }
+        
+        .value-item.selected {
+            border-color: #4a90e2;
+            background: #f0f8ff;
+            box-shadow: 0 2px 8px rgba(74, 144, 226, 0.2);
+        }
+        
+        .value-checkbox {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            cursor: pointer;
+        }
+        
+        .value-text {
+            flex: 1;
+            cursor: pointer;
+            font-size: 1.05em;
+        }
+        
+        .value-code {
+            background: #4a90e2;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .action-button {
+            background: #4a90e2;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: background 0.2s ease;
+        }
+        
+        .action-button:hover {
+            background: #357abd;
+        }
+        
+        .action-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .results-section {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 2px solid #28a745;
+        }
+        
+        .category-counts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .category-count {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .category-count.top {
+            border-color: #28a745;
+            background: #f8fff8;
+        }
+        
+        .count-number {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #4a90e2;
+        }
+        
+        .count-label {
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        
+        .final-selection {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            border: 2px solid #4a90e2;
+        }
+        
+        .selection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .selection-option {
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .selection-option:hover {
+            border-color: #4a90e2;
+            background: #f0f8ff;
+        }
+        
+        .selection-option.selected {
+            border-color: #28a745;
+            background: #f8fff8;
+        }
+        
+        .top-values {
+            background: #e8f5e8;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 2px solid #28a745;
+        }
+        
+        .code-key {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 2px solid #4a90e2;
+        }
+        
+        .key-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        @media (max-width: 600px) {
+            .values-assessment-container {
+                padding: 10px;
+            }
+            
+            .category-counts {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .selection-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .key-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="values-assessment-container">
+        <div class="assessment-header">
+            <h1 class="assessment-title">Values Self-Assessment</h1>
+        </div>
+        
+        <div class="instruction">
+            <h3>Instructions:</h3>
+            <p>Put a checkmark next to ALL the statements that reflect your priorities.</p>
+        </div>
+        
+        <div class="values-grid" id="values-container">
+            <!-- Values will be populated here -->
+        </div>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <button class="action-button" onclick="calculateResults()" id="calculate-btn" disabled>
+                View My Results
+            </button>
+        </div>
+        
+        <div class="results-section" id="results-section">
+            <h3 style="color: #28a745; margin-top: 0;">Your Values Profile</h3>
+            <p>Here's how your selections break down across the 8 value categories:</p>
+            
+            <div class="category-counts" id="category-counts">
+                <!-- Category counts will be populated here -->
+            </div>
+            
+            <div style="text-align: center; margin: 20px 0;">
+                <button class="action-button" onclick="showTopThree()">
+                    Select My Top 3 Values
+                </button>
+            </div>
+            
+            <div class="final-selection" id="final-selection">
+                <h4 style="color: #4a90e2;">Select your TOP THREE value categories:</h4>
+                <p>Choose the three categories that are most important to you:</p>
+                
+                <div class="selection-grid" id="selection-grid">
+                    <!-- Top categories will be populated here -->
+                </div>
+                
+                <div style="text-align: center; margin: 20px 0;">
+                    <button class="action-button" onclick="showFinalResults()" id="final-btn" disabled>
+                        Show My Top Values
+                    </button>
+                </div>
+                
+                <div class="top-values" id="top-values" style="display: none;">
+                    <h4 style="color: #28a745; margin-top: 0;">🎯 Your Core Values</h4>
+                    <div id="final-results"></div>
+                    
+                    <div class="code-key">
+                        <h4 style="color: #4a90e2; margin-top: 0;">📖 Values Code Key</h4>
+                        <div class="key-grid">
+                            <div><strong>SE</strong> - Security</div>
+                            <div><strong>CH</strong> - Challenge</div>
+                            <div><strong>AU</strong> - Autonomy</div>
+                            <div><strong>LS</strong> - Lifestyle</div>
+                            <div><strong>SV</strong> - Service</div>
+                            <div><strong>GM</strong> - General Managerial</div>
+                            <div><strong>EC</strong> - Entrepreneurial Creativity</div>
+                            <div><strong>TF</strong> - Technical/Functional</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const values = [
+            { text: "Having a routine, stable job without a lot of pressure", code: "SE" },
+            { text: "Doing challenging work", code: "CH" },
+            { text: "Working independently", code: "AU" },
+            { text: "Working in pleasant surroundings with pleasant coworkers", code: "LS" },
+            { text: "Helping others", code: "SV" },
+            { text: "Being steadily promoted up the ladder", code: "GM" },
+            { text: "Having my own business", code: "EC" },
+            { text: "Being respected for my skills", code: "TF" },
+            { text: "Not having to worry about keeping my job", code: "SE" },
+            { text: "Adventure", code: "CH" },
+            { text: "Doing my own work on my own schedule", code: "AU" },
+            { text: "Having a job near where I live", code: "LS" },
+            { text: "Making the world a better place", code: "SV" },
+            { text: "Rising to the top of the organization", code: "GM" },
+            { text: "Expressing my talents", code: "EC" },
+            { text: "Being in a job that gives me prestige or status", code: "TF" },
+            { text: "Having regular pay and good benefits", code: "SE" },
+            { text: "Outperforming my competitors", code: "CH" },
+            { text: "Managing myself to my own high standards", code: "AU" },
+            { text: "Balancing work, family, and personal needs", code: "LS" },
+            { text: "Managing others", code: "GM" },
+            { text: "Creating new things or new ideas", code: "EC" },
+            { text: "Getting recognition or credit for my work", code: "TF" }
+        ];
+
+        const categories = {
+            "SE": "Security",
+            "CH": "Challenge",
+            "AU": "Autonomy", 
+            "LS": "Lifestyle",
+            "SV": "Service",
+            "GM": "General Managerial",
+            "EC": "Entrepreneurial Creativity",
+            "TF": "Technical/Functional"
+        };
+
+        let selectedValues = [];
+        let topThreeSelections = [];
+
+        function initializeValues() {
+            const container = document.getElementById('values-container');
+            
+            values.forEach((value, index) => {
+                const valueItem = document.createElement('div');
+                valueItem.className = 'value-item';
+                valueItem.innerHTML = `
+                    <input type="checkbox" class="value-checkbox" id="value-${index}" onchange="toggleValue(${index})">
+                    <label class="value-text" for="value-${index}">${value.text}</label>
+                    <span class="value-code">${value.code}</span>
+                `;
+                container.appendChild(valueItem);
+            });
+        }
+
+        function toggleValue(index) {
+            const checkbox = document.getElementById(`value-${index}`);
+            const valueItem = checkbox.closest('.value-item');
+            
+            if (checkbox.checked) {
+                selectedValues.push(index);
+                valueItem.classList.add('selected');
+            } else {
+                selectedValues = selectedValues.filter(i => i !== index);
+                valueItem.classList.remove('selected');
+            }
+            
+            document.getElementById('calculate-btn').disabled = selectedValues.length === 0;
+        }
+
+        function calculateResults() {
+            const counts = {};
+            Object.keys(categories).forEach(code => counts[code] = 0);
+            
+            selectedValues.forEach(index => {
+                const code = values[index].code;
+                counts[code]++;
+            });
+            
+            displayResults(counts);
+            document.getElementById('results-section').style.display = 'block';
+            document.getElementById('results-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function displayResults(counts) {
+            const container = document.getElementById('category-counts');
+            container.innerHTML = '';
+            
+            const sortedCategories = Object.entries(counts)
+                .sort(([,a], [,b]) => b - a);
+            
+            sortedCategories.forEach(([code, count], index) => {
+                const countDiv = document.createElement('div');
+                countDiv.className = `category-count ${index < 3 ? 'top' : ''}`;
+                countDiv.innerHTML = `
+                    <div class="count-number">${count}</div>
+                    <div class="count-label">${categories[code]}</div>
+                    <div style="font-size: 0.8em; color: #666;">(${code})</div>
+                `;
+                container.appendChild(countDiv);
+            });
+        }
+
+        function showTopThree() {
+            const counts = {};
+            Object.keys(categories).forEach(code => counts[code] = 0);
+            
+            selectedValues.forEach(index => {
+                const code = values[index].code;
+                counts[code]++;
+            });
+            
+            const availableCategories = Object.entries(counts)
+                .filter(([code, count]) => count > 0)
+                .sort(([,a], [,b]) => b - a);
+            
+            const container = document.getElementById('selection-grid');
+            container.innerHTML = '';
+            
+            availableCategories.forEach(([code, count]) => {
+                const option = document.createElement('div');
+                option.className = 'selection-option';
+                option.onclick = () => selectTopValue(code, option);
+                option.innerHTML = `
+                    <div style="font-weight: bold; margin-bottom: 5px;">${categories[code]}</div>
+                    <div style="font-size: 0.9em; color: #666;">${count} selections</div>
+                    <div style="font-size: 0.8em; color: #888;">(${code})</div>
+                `;
+                container.appendChild(option);
+            });
+            
+            document.getElementById('final-selection').style.display = 'block';
+            document.getElementById('final-selection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function selectTopValue(code, element) {
+            if (topThreeSelections.includes(code)) {
+                topThreeSelections = topThreeSelections.filter(c => c !== code);
+                element.classList.remove('selected');
+            } else if (topThreeSelections.length < 3) {
+                topThreeSelections.push(code);
+                element.classList.add('selected');
+            } else {
+                const oldCode = topThreeSelections.shift();
+                const oldElement = [...document.querySelectorAll('.selection-option')]
+                    .find(el => el.textContent.includes(`(${oldCode})`));
+                if (oldElement) oldElement.classList.remove('selected');
+                
+                topThreeSelections.push(code);
+                element.classList.add('selected');
+            }
+            
+            document.getElementById('final-btn').disabled = topThreeSelections.length !== 3;
+        }
+
+        function showFinalResults() {
+            const resultsDiv = document.getElementById('final-results');
+            resultsDiv.innerHTML = `
+                <p><strong>Your top three core values are:</strong></p>
+                <div style="margin: 15px 0;">
+                    <div style="background: white; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 5px solid #28a745;">
+                        <strong>Value #1: ${categories[topThreeSelections[0]]}</strong><br>
+                        <span style="color: #666;">Code: ${topThreeSelections[0]}</span>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 5px solid #4a90e2;">
+                        <strong>Value #2: ${categories[topThreeSelections[1]]}</strong><br>
+                        <span style="color: #666;">Code: ${topThreeSelections[1]}</span>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 5px solid #f39c12;">
+                        <strong>Value #3: ${categories[topThreeSelections[2]]}</strong><br>
+                        <span style="color: #666;">Code: ${topThreeSelections[2]}</span>
+                    </div>
+                </div>
+                <p style="font-style: italic; color: #666;">These values represent what motivates and drives you most in your work and personal life.</p>
+            `;
+            
+            document.getElementById('top-values').style.display = 'block';
+            document.getElementById('top-values').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        initializeValues();
+    </script>
+</body>
+</html>

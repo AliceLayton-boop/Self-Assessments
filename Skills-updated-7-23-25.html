@@ -1,1 +1,924 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Skills Self-Assessment</title><style>.skills-assessment-container{max-width:800px;margin:0 auto;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;line-height:1.6;color:#333}.assessment-header{text-align:center;margin-bottom:30px}.assessment-title{font-size:2.2em;font-weight:bold;color:#333;margin-bottom:10px}.round-instruction{font-size:1.1em;color:#666;margin-bottom:20px}.progress-section{margin-bottom:25px}.progress-text{text-align:center;font-weight:500;margin-bottom:10px;color:#555}.progress-container{background:#f0f0f0;border-radius:25px;padding:3px;margin-bottom:10px}.progress-bar{background:linear-gradient(90deg,#4a90e2,#7b68ee);height:25px;border-radius:22px;transition:width .3s ease;display:flex;align-items:center;justify-content:center;color:white;font-weight:bold;font-size:.9em;min-width:0%}.skill-card{background:#f9f9f9;border:2px solid #e0e0e0;border-radius:12px;padding:25px;margin:20px 0;transition:all .3s ease}.skill-card.completed{border-color:#4a90e2;background:#f0f8ff}.round-indicator{background:#888;color:white;padding:8px 15px;border-radius:20px;display:inline-block;margin-bottom:15px;font-weight:bold;font-size:.9em}.skill-number{background:#888;color:white;border-radius:50%;width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;margin-bottom:15px}.skill-card:not(.round-2) .skill-number{background:#4a90e2}.skill-card:not(.round-2) .round-indicator{background:#4a90e2}.skill-title{font-size:1.4em;font-weight:bold;color:#333;margin-bottom:8px}.skill-description{color:#666;margin-bottom:20px;font-size:1em;line-height:1.5}.rating-options{display:flex;flex-direction:column;gap:8px;max-width:400px}.rating-button{display:flex;align-items:center;gap:15px;padding:12px 20px;border:2px solid #ddd;border-radius:15px;background:white;cursor:pointer;transition:all .2s ease;font-size:1.1em;font-weight:500;text-align:left}.skill-card:not(.round-2) .rating-options .rating-button{background:white;border-color:#ddd}.rating-button:hover{border-color:#ccc;transform:translateY(-2px);box-shadow:0 4px 8px rgba(0,0,0,.1)}.traffic-light{width:50px;height:50px;border-radius:50%;flex-shrink:0;position:relative;display:flex;align-items:center;justify-content:center}.traffic-light::before{content:'';position:absolute;width:8px;height:8px;background:#333;border-radius:50%;left:14px;top:14px}.traffic-light::after{content:'';position:absolute;width:8px;height:8px;background:#333;border-radius:50%;right:14px;top:14px}.rating-button.love .traffic-light::before{content:'♥';width:14px;height:14px;background:transparent;border-radius:0;font-size:12px;display:flex;align-items:center;justify-content:center;left:11px;top:11px}.rating-button.love .traffic-light::after{content:'♥';width:14px;height:14px;background:transparent;border-radius:0;font-size:12px;display:flex;align-items:center;justify-content:center;right:11px;top:11px}.smile-mouth{position:absolute;width:20px;height:10px;border:4px solid #333;border-top:none;border-radius:0 0 20px 20px;bottom:12px}.neutral-mouth{position:absolute;width:18px;height:8px;border:3px solid #333;border-top:none;border-radius:0 0 18px 18px;bottom:15px}.frown-mouth{position:absolute;width:20px;height:10px;border:4px solid #333;border-bottom:none;border-radius:20px 20px 0 0;bottom:12px}.rating-button.love .traffic-light{background:#00ff00}.rating-button.love:hover{border-color:#00ff00}.rating-button.love.selected{border-color:#00ff00;background:#f0fff0;box-shadow:0 4px 12px rgba(0,255,0,.2)}.rating-button.like .traffic-light{background:#ffff00}.rating-button.like:hover{border-color:#ffff00}.rating-button.like.selected{border-color:#ffff00;background:#fffff0;box-shadow:0 4px 12px rgba(255,255,0,.2)}.rating-button.dislike .traffic-light{background:#ff0000}.rating-button.dislike:hover{border-color:#ff0000}.rating-button.dislike.selected{border-color:#ff0000;background:#fff0f0;box-shadow:0 4px 12px rgba(255,0,0,.2)}.navigation{display:flex;justify-content:space-between;align-items:center;margin-top:30px;padding-top:20px;border-top:1px solid #eee;flex-wrap:wrap;gap:15px}.nav-button{padding:12px 24px;border:none;border-radius:25px;background:#4a90e2;color:white;cursor:pointer;font-size:1em;transition:background .2s ease;min-width:100px}.nav-button:hover{background:#357abd}.nav-button:disabled{background:#ccc;cursor:not-allowed}.results-button{background:#28a745}.results-button:hover{background:#218838}.current-skill{color:#4a90e2;font-weight:bold;text-align:center;flex:1;min-width:200px}.results-section{background:#f8f9fa;padding:25px;border-radius:12px;border:2px solid #28a745;margin-top:20px}.results-title{color:#28a745;font-size:1.5em;font-weight:bold;margin-bottom:20px;text-align:center}.results-summary{background:#e8f5e8;padding:20px;border-radius:10px;border:2px solid #28a745;margin-top:20px}.summary-title{color:#28a745;font-weight:bold;font-size:1.2em;margin-bottom:15px}.summary-text{font-weight:bold;margin-bottom:15px}.skills-list{margin:15px 0}.skills-list li{margin-bottom:5px}@media(max-width:600px){.skills-assessment-container{padding:10px}.rating-options{max-width:100%}.rating-button{padding:10px 15px;font-size:1em}.traffic-light{width:40px;height:40px}.navigation{flex-direction:column;text-align:center}.current-skill{order:-1;margin-bottom:15px}}</style></head><body><div class="skills-assessment-container"><div class="assessment-header"><h1 class="assessment-title">Skills Self-Assessment</h1><div class="round-instruction" id="round-instruction">How much do you enjoy each of these activities?</div></div><div class="progress-section"><div class="progress-text" id="progress-text">0 of 45 skills rated</div><div class="progress-container"><div class="progress-bar" id="progress-bar" style="width:0%">0%</div></div></div><div id="skill-container"></div><div class="navigation"><button class="nav-button" id="prev-button" onclick="previousSkill()" disabled>Previous</button><div class="current-skill" id="skill-indicator">Skill 1 of 45</div><button class="nav-button" id="next-button" onclick="nextSkill()">Next</button><button class="nav-button results-button" id="round2-button" onclick="startRound2()" style="display:none">Start Round 2</button><button class="nav-button results-button" id="results-button" onclick="viewResults()" style="display:none">View Results</button></div></div><script>const skills=[{id:1,title:"ACT AS LIAISON",description:"Represent, serve as a link between individuals or groups."},{id:2,title:"ANALYZE",description:"Break down, figure out problems logically."},{id:3,title:"BUDGET",description:"Economize, save, stretch money or other resources."},{id:4,title:"CLASSIFY",description:"Group, categorize, systematize data, people, or things. Implement, provide detailed follow-through of policies and plans."},{id:5,title:"COMPOSE MUSIC",description:"Write and arrange music for voice or instruments."},{id:6,title:"COUNSEL",description:"Facilitate insight and personal growth, guide, advise, coach students, employees, or clients."},{id:7,title:"COUNT",description:"Tally, calculate, compute quantities."},{id:8,title:"DESIGN",description:"Structure new or innovative practices, programs, products, or environments."},{id:9,title:"ENTERTAIN, PERFORM",description:"Amuse, sing, dance, act, play music for, give a demonstration to, speak to an audience."},{id:10,title:"ESTIMATE",description:"Appraise value or cost."},{id:11,title:"EVALUATE",description:"Assess, review, critique feasibility or quality."},{id:12,title:"EXPEDITE",description:"Speed up production or services, troubleshoot problems, streamline procedures."},{id:13,title:"GENERATE IDEAS",description:"Reflect upon, conceive of, dream up, brainstorm ideas."},{id:14,title:"HOST",description:"Make welcome, put at ease, provide comfort and pleasure, serve visitors, guests, or customers."},{id:15,title:"INITIATE CHANGE",description:"Exert influence on changing the status quo. Exercise leadership in bringing about new directions."},{id:16,title:"INTERVIEW FOR INFORMATION",description:"Draw out subjects through incisive questioning."},{id:17,title:"MAKE ARRANGEMENTS",description:"Coordinate events, handle logistics."},{id:18,title:"MAKE DECISIONS",description:"Make major, complex, or frequent decisions."},{id:19,title:"MAINTAIN RECORDS",description:"Keep accurate and up-to-date records, log, record, itemize, collate, tabulate data."},{id:20,title:"MEDIATE",description:"Manage conflict, reconcile differences."},{id:21,title:"MONITOR",description:"Keep track of the movement of data, people, or things."},{id:22,title:"MOTIVATE",description:"Recruit involvement, mobilize energy, stimulate peak performance."},{id:23,title:"NEGOTIATE",description:"Bargain for rights or advantages."},{id:24,title:"OBSERVE",description:"Study, scrutinize, examine data, people, or things scientifically."},{id:25,title:"PERCEIVE INTUITIVELY",description:"Sense, show insight and foresight."},{id:26,title:"PLAN, ORGANIZE",description:"Define goals and objectives, schedule and develop projects or programs."},{id:27,title:"PLANT, CULTIVATE",description:"Grow food, flowers, trees or lawns. Prepare soil, plant, water, fertilize, weed, harvest, trim, prune, mow."},{id:28,title:"PORTRAY IMAGES",description:"Sketch, draw, illustrate, paint, photograph."},{id:29,title:"PREPARE FOOD",description:"Wash, cut, blend, bake, and arrange for nutrition, taste, and esthetics."},{id:30,title:"PRODUCE SKILLED CRAFTS",description:"Shape, weave, attach, etch, or carve ornamental gifts or display items."},{id:31,title:"READ FOR INFORMATION",description:"Research written resources efficiently and exhaustively."},{id:32,title:"SELL",description:"Promote a person, company, goods or services, convince of merits, raise money."},{id:33,title:"STAGE SHOWS",description:"Produce theatrical art, fashion, or trade shows and other events for public performance or display."},{id:34,title:"SUPERVISE",description:"Oversee, direct the work of others."},{id:35,title:"SYNTHESIZE",description:"Integrate ideas and information, combine diverse elements into a coherent whole."},{id:36,title:"TEACH, TRAIN",description:"Inform, explain, give instruction to students, employees, or customers."},{id:37,title:"TEND ANIMALS",description:"Feed, shelter, breed, train, or show domestic pets, or farm or ranch animals."},{id:38,title:"TEST",description:"Measure proficiency, quality, or validity. Check and double-check."},{id:39,title:"TRANSPORT",description:"Drive, lift, carry, or haul."},{id:40,title:"TREAT, NURSE",description:"Heal, cure patients or clients."},{id:41,title:"USE CARPENTRY ABILITIES",description:"Construct, maintain, or restore buildings, fittings, or furnishings."},{id:42,title:"USE MECHANICAL ABILITIES",description:"Assemble, tune, repair, or operate engines or other machinery."},{id:43,title:"USE PHYSICAL COORDINATION AND AGILITY",description:"Walk, run, climb, scale, jump, balance, aim, throw, catch, or hit."},{id:44,title:"VISUALIZE",description:"Imagine possibilities, see in mind's eye."},{id:45,title:"WRITE",description:"Compose reports, letters, articles, ads, stories, or educational materials."}];let currentSkill=0,ratings={},currentRound=1,round2Skills=[];function loadProgress(){ratings={},currentRound=1,currentSkill=0,round2Skills=[],updateDisplay()}function updateDisplay(){const skillsToUse=1===currentRound?skills:round2Skills,skill=skillsToUse[currentSkill];let completed,totalSkills,percentage;1===currentRound?(completed=skills.filter(s=>ratings[s.id]).length,totalSkills=skills.length,percentage=Math.round(completed/totalSkills*100)):(completed=round2Skills.filter(s=>ratings[s.id]).length,totalSkills=round2Skills.length,percentage=Math.round(completed/totalSkills*100)),document.getElementById("progress-text").textContent=`${completed} of ${totalSkills} skills rated`,document.getElementById("progress-bar").style.width=`${percentage}%`,document.getElementById("progress-bar").textContent=`${percentage}%`;const instructionElement=document.getElementById("round-instruction");1===currentRound?instructionElement.textContent="How much do you enjoy each of these activities?":instructionElement.textContent="Now rate your competency level for each of these preferred skills:",document.getElementById("skill-indicator").textContent=`${1===currentRound?"Round 1 - ":"Round 2 - "}Skill ${currentSkill+1} of ${totalSkills}`;const container=document.getElementById("skill-container"),isRound2=2===currentRound;container.innerHTML=`<div class="skill-card ${ratings[skill.id]?"completed":""} ${2===currentRound?"round-2":""}"> ${2===currentRound?'<div class="round-indicator">Final Round: Now rate your competence at each skill</div>':""} <div class="skill-number">${skill.id}</div> <div class="skill-title">${skill.title}</div> <div class="skill-description">${skill.description}</div> <div class="rating-options"> <button class="rating-button love ${ratings[skill.id]==="love"?"selected":""}" onclick="setRating(${skill.id}, 'love')"> <div class="traffic-light"> <div class="smile-mouth"></div> </div> ${isRound2?"I'm really good at this":"I love doing this"} </button> <button class="rating-button like ${ratings[skill.id]==="like"?"selected":""}" onclick="setRating(${skill.id}, 'like')"> <div class="traffic-light"> <div class="neutral-mouth"></div> </div> ${isRound2?"I'm pretty good at this":"I like doing this"} </button> <button class="rating-button dislike ${ratings[skill.id]==="dislike"?"selected":""}" onclick="setRating(${skill.id}, 'dislike')"> <div class="traffic-light"> <div class="frown-mouth"></div> </div> ${isRound2?"I'm not skilled at this":"I don't enjoy this"} </button> </div> </div>`,document.getElementById("prev-button").disabled=0===currentSkill,document.getElementById("next-button").style.display=currentSkill===skillsToUse.length-1?"none":"inline-block";if(1===currentRound){const round1Complete=skills.every(s=>ratings[s.id]);round1Complete?(document.getElementById("round2-button").style.display="inline-block",document.getElementById("results-button").style.display="none"):(document.getElementById("round2-button").style.display="none",document.getElementById("results-button").style.display="none")}else{const round2Complete=round2Skills.every(s=>ratings[s.id]);round2Complete?(document.getElementById("round2-button").style.display="none",document.getElementById("results-button").style.display="inline-block"):(document.getElementById("round2-button").style.display="none",document.getElementById("results-button").style.display="none")}}function setRating(skillId,rating){ratings[skillId]=rating,updateDisplay()}function nextSkill(){const skillsToUse=1===currentRound?skills:round2Skills;currentSkill<skillsToUse.length-1&&(currentSkill++,updateDisplay())}function previousSkill(){currentSkill>0&&(currentSkill--,updateDisplay())}function startRound2(){const loveSkills=skills.filter(s=>"love"===ratings[s.id]),likeSkills=skills.filter(s=>"like"===ratings[s.id]);round2Skills=loveSkills.length>=5?[...loveSkills]:[...loveSkills,...likeSkills],currentRound=2,currentSkill=0;const round2SkillIds=round2Skills.map(s=>s.id);round2SkillIds.forEach(skillId=>{delete ratings[skillId]}),updateDisplay()}function viewResults(){const round1Completed=skills.every(s=>ratings[s.id]||round2Skills.some(r2=>r2.id===s.id)),round2Completed=1===currentRound||round2Skills.every(s=>ratings[s.id]);if(!round1Completed||!round2Completed){const totalSkills=1===currentRound?skills.length:round2Skills.length,completed=1===currentRound?skills.filter(s=>ratings[s.id]).length:round2Skills.filter(s=>ratings[s.id]).length;return void alert(`Please complete all skills before viewing results. You have completed ${completed} of ${totalSkills} skills.`)}const reallyGoodSkills=round2Skills.filter(s=>"love"===ratings[s.id]),prettyGoodSkills=round2Skills.filter(s=>"like"===ratings[s.id]),notSkilledSkills=round2Skills.filter(s=>"dislike"===ratings[s.id]),container=document.getElementById("skill-container");container.innerHTML=`<div class="results-section"> <h2 class="results-title">🎉 Skills Assessment Complete!</h2> <div style="background:#f0f8ff;padding:20px;border-radius:10px;margin-bottom:30px;text-align:center;border:2px solid #4a90e2"> <h3 style="color:#4a90e2;margin-bottom:15px">Assessment Summary</h3> <p style="margin-bottom:10px">✅ Round 1: Rated enjoyment for all ${skills.length} skills</p> <p style="margin-bottom:10px">✅ Round 2: Rated competency for ${round2Skills.length} preferred skills</p> <p style="font-weight:bold;color:#28a745">Assessment Complete!</p> </div> <div style="background:#f0f8ff;padding:20px;border-radius:10px;margin-bottom:30px;text-align:center;border:2px solid #4a90e2"> <h3 style="color:#4a90e2;margin-bottom:15px">Your Skill Competency Summary</h3> <p style="margin-bottom:10px">From your ${round2Skills.length} preferred skills, here's how you rated your competency:</p> <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:15px;margin-top:20px"> <div style="background:#f0fff0;padding:15px;border-radius:8px;border:2px solid #00ff00"> <div style="font-size:1.5em;font-weight:bold;color:#00aa00">${reallyGoodSkills.length}</div> <div>Really Good At</div> </div> <div style="background:#fffff0;padding:15px;border-radius:8px;border:2px solid #ffff00"> <div style="font-size:1.5em;font-weight:bold;color:#cccc00">${prettyGoodSkills.length}</div> <div>Pretty Good At</div> </div> <div style="background:#fff0f0;padding:15px;border-radius:8px;border:2px solid #ff0000"> <div style="font-size:1.5em;font-weight:bold;color:#cc0000">${notSkilledSkills.length}</div> <div>Need Development</div> </div> </div> </div> <h3 style="color:#00aa00">🌟 Skills You're Really Good At:</h3> <ul class="skills-list"> ${reallyGoodSkills.map(s=>`<li><strong>${s.title}</strong> - ${s.description}</li>`).join("")} ${0===reallyGoodSkills.length?'<li style="font-style:italic;color:#666">No skills rated in this category</li>':""} </ul> <h3 style="color:#cccc00">👍 Skills You're Pretty Good At:</h3> <ul class="skills-list"> ${prettyGoodSkills.map(s=>`<li><strong>${s.title}</strong> - ${s.description}</li>`).join("")} ${0===prettyGoodSkills.length?'<li style="font-style:italic;color:#666">No skills rated in this category</li>':""} </ul> ${notSkilledSkills.length>0?`<h3 style="color:#cc0000">📈 Skills That Need Development:</h3> <ul class="skills-list"> ${notSkilledSkills.map(s=>`<li><strong>${s.title}</strong> - ${s.description}</li>`).join("")} </ul>`:""} <div class="results-summary"> <h4 class="summary-title">🎯 Your Core Strength Profile</h4> <p class="summary-text">These are your strongest skills - the ones you both enjoy doing AND feel really competent at. These represent your core professional strengths.</p> ${reallyGoodSkills.length>0?`<ul class="skills-list"> ${reallyGoodSkills.map(s=>`<li><strong>${s.title}</strong></li>`).join("")} </ul> <p style="margin-top:15px;font-weight:bold;color:#28a745"> Focus on these ${reallyGoodSkills.length} core strength${1===reallyGoodSkills.length?"":"s"} for maximum impact in your career development. </p>`:'<p style="font-style:italic;color:#666;margin-top:10px"> Consider developing your competency in skills you enjoy to build this core strength category. Your "pretty good" skills are great candidates for further development. </p>'} </div> </div>`,document.getElementById("prev-button").style.display="none",document.getElementById("next-button").style.display="none",document.getElementById("round2-button").style.display="none",document.getElementById("results-button").style.display="none",document.getElementById("skill-indicator").textContent="Assessment Complete"}loadProgress();</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills Self-Assessment</title>
+    <style>
+        .skills-assessment-container {
+            max-width: 800px;
+            margin: 0 auto;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .assessment-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .assessment-title {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .round-instruction {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .progress-section {
+            margin-bottom: 25px;
+        }
+        
+        .progress-text {
+            text-align: center;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .progress-container {
+            background: #f0f0f0;
+            border-radius: 25px;
+            padding: 3px;
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #4a90e2, #7b68ee);
+            height: 25px;
+            border-radius: 22px;
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+            min-width: 0%;
+        }
+        
+        .skill-card {
+            background: #f9f9f9;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-card.completed {
+            border-color: #4a90e2;
+            background: #f0f8ff;
+        }
+        
+        .round-indicator {
+            background: #888;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        .skill-number {
+            background: #888;
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .skill-card:not(.round-2) .skill-number {
+            background: #4a90e2;
+        }
+        
+        .skill-card:not(.round-2) .round-indicator {
+            background: #4a90e2;
+        }
+        
+        .skill-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .skill-description {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 1em;
+            line-height: 1.5;
+        }
+        
+        .rating-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-width: 400px;
+        }
+        
+        .rating-button {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 20px;
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1.1em;
+            font-weight: 500;
+            text-align: left;
+        }
+        
+        .skill-card:not(.round-2) .rating-options .rating-button {
+            background: white;
+            border-color: #ddd;
+        }
+        
+        .rating-button:hover {
+            border-color: #ccc;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .traffic-light {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .traffic-light::before {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #333;
+            border-radius: 50%;
+            left: 14px;
+            top: 14px;
+        }
+        
+        .traffic-light::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #333;
+            border-radius: 50%;
+            right: 14px;
+            top: 14px;
+        }
+        
+        /* FIXED: Made heart eyes bigger and more visible */
+        .rating-button.love .traffic-light::before {
+            content: '♥';
+            width: 18px;
+            height: 18px;
+            background: transparent;
+            border-radius: 0;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            left: 9px;
+            top: 9px;
+            color: #000000;
+            font-weight: bold;
+        }
+        
+        .rating-button.love .traffic-light::after {
+            content: '♥';
+            width: 18px;
+            height: 18px;
+            background: transparent;
+            border-radius: 0;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            right: 9px;
+            top: 9px;
+            color: #000000;
+            font-weight: bold;
+        }
+        
+        .smile-mouth {
+            position: absolute;
+            width: 20px;
+            height: 10px;
+            border: 4px solid #333;
+            border-top: none;
+            border-radius: 0 0 20px 20px;
+            bottom: 12px;
+        }
+        
+        .neutral-mouth {
+            position: absolute;
+            width: 18px;
+            height: 8px;
+            border: 3px solid #333;
+            border-top: none;
+            border-radius: 0 0 18px 18px;
+            bottom: 15px;
+        }
+        
+        .frown-mouth {
+            position: absolute;
+            width: 20px;
+            height: 10px;
+            border: 4px solid #333;
+            border-bottom: none;
+            border-radius: 20px 20px 0 0;
+            bottom: 12px;
+        }
+        
+        .rating-button.love .traffic-light {
+            background: #00ff00;
+        }
+        
+        .rating-button.love:hover {
+            border-color: #00ff00;
+        }
+        
+        /* FIXED: Made selected button background much more visible */
+        .rating-button.love.selected {
+            border-color: #00aa00;
+            background: #ccffcc !important;
+            box-shadow: 0 4px 12px rgba(0, 255, 0, 0.3);
+            transform: translateY(-1px);
+        }
+        
+        .rating-button.like .traffic-light {
+            background: #ffff00;
+        }
+        
+        .rating-button.like:hover {
+            border-color: #ffff00;
+        }
+        
+        /* FIXED: Made selected button background much more visible */
+        .rating-button.like.selected {
+            border-color: #cccc00;
+            background: #ffffcc !important;
+            box-shadow: 0 4px 12px rgba(255, 255, 0, 0.3);
+            transform: translateY(-1px);
+        }
+        
+        .rating-button.dislike .traffic-light {
+            background: #ff0000;
+        }
+        
+        .rating-button.dislike:hover {
+            border-color: #ff0000;
+        }
+        
+        /* FIXED: Made selected button background much more visible */
+        .rating-button.dislike.selected {
+            border-color: #cc0000;
+            background: #ffcccc !important;
+            box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+            transform: translateY(-1px);
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .nav-button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            background: #4a90e2;
+            color: white;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.2s ease;
+            min-width: 100px;
+        }
+        
+        .nav-button:hover {
+            background: #357abd;
+        }
+        
+        .nav-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .results-button {
+            background: #28a745;
+        }
+        
+        .results-button:hover {
+            background: #218838;
+        }
+        
+        .current-skill {
+            color: #4a90e2;
+            font-weight: bold;
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .results-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid #28a745;
+            margin-top: 20px;
+        }
+        
+        .results-title {
+            color: #28a745;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .results-summary {
+            background: #e8f5e8;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #28a745;
+            margin-top: 20px;
+        }
+        
+        .summary-title {
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+        
+        .summary-text {
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .skills-list {
+            margin: 15px 0;
+        }
+        
+        .skills-list li {
+            margin-bottom: 5px;
+        }
+        
+        @media (max-width: 600px) {
+            .skills-assessment-container {
+                padding: 10px;
+            }
+            
+            .rating-options {
+                max-width: 100%;
+            }
+            
+            .rating-button {
+                padding: 10px 15px;
+                font-size: 1em;
+            }
+            
+            .traffic-light {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .current-skill {
+                order: -1;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="skills-assessment-container">
+        <div class="assessment-header">
+            <h1 class="assessment-title">Skills Self-Assessment</h1>
+            <div class="round-instruction" id="round-instruction">How much do you enjoy each of these activities?</div>
+        </div>
+        
+        <div class="progress-section">
+            <div class="progress-text" id="progress-text">0 of 45 skills rated</div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar" style="width: 0%">0%</div>
+            </div>
+        </div>
+        
+        <div id="skill-container"></div>
+        
+        <div class="navigation">
+            <button class="nav-button" id="prev-button" onclick="previousSkill()" disabled>Previous</button>
+            <div class="current-skill" id="skill-indicator">Skill 1 of 45</div>
+            <button class="nav-button" id="next-button" onclick="nextSkill()">Next</button>
+            <button class="nav-button results-button" id="round2-button" onclick="startRound2()" style="display: none;">Start Round 2</button>
+            <button class="nav-button results-button" id="results-button" onclick="viewResults()" style="display: none;">View Results</button>
+        </div>
+    </div>
+
+    <script>
+        const skills = [
+            {
+                id: 1,
+                title: "ACT AS LIAISON",
+                description: "Represent, serve as a link between individuals or groups."
+            },
+            {
+                id: 2,
+                title: "ANALYZE",
+                description: "Break down, figure out problems logically."
+            },
+            {
+                id: 3,
+                title: "BUDGET",
+                description: "Economize, save, stretch money or other resources."
+            },
+            {
+                id: 4,
+                title: "CLASSIFY",
+                description: "Group, categorize, systematize data, people, or things. Implement, provide detailed follow-through of policies and plans."
+            },
+            {
+                id: 5,
+                title: "COMPOSE MUSIC",
+                description: "Write and arrange music for voice or instruments."
+            },
+            {
+                id: 6,
+                title: "COUNSEL",
+                description: "Facilitate insight and personal growth, guide, advise, coach students, employees, or clients."
+            },
+            {
+                id: 7,
+                title: "COUNT",
+                description: "Tally, calculate, compute quantities."
+            },
+            {
+                id: 8,
+                title: "DESIGN",
+                description: "Structure new or innovative practices, programs, products, or environments."
+            },
+            {
+                id: 9,
+                title: "ENTERTAIN, PERFORM",
+                description: "Amuse, sing, dance, act, play music for, give a demonstration to, speak to an audience."
+            },
+            {
+                id: 10,
+                title: "ESTIMATE",
+                description: "Appraise value or cost."
+            },
+            {
+                id: 11,
+                title: "EVALUATE",
+                description: "Assess, review, critique feasibility or quality."
+            },
+            {
+                id: 12,
+                title: "EXPEDITE",
+                description: "Speed up production or services, troubleshoot problems, streamline procedures."
+            },
+            {
+                id: 13,
+                title: "GENERATE IDEAS",
+                description: "Reflect upon, conceive of, dream up, brainstorm ideas."
+            },
+            {
+                id: 14,
+                title: "HOST",
+                description: "Make welcome, put at ease, provide comfort and pleasure, serve visitors, guests, or customers."
+            },
+            {
+                id: 15,
+                title: "INITIATE CHANGE",
+                description: "Exert influence on changing the status quo. Exercise leadership in bringing about new directions."
+            },
+            {
+                id: 16,
+                title: "INTERVIEW FOR INFORMATION",
+                description: "Draw out subjects through incisive questioning."
+            },
+            {
+                id: 17,
+                title: "MAKE ARRANGEMENTS",
+                description: "Coordinate events, handle logistics."
+            },
+            {
+                id: 18,
+                title: "MAKE DECISIONS",
+                description: "Make major, complex, or frequent decisions."
+            },
+            {
+                id: 19,
+                title: "MAINTAIN RECORDS",
+                description: "Keep accurate and up-to-date records, log, record, itemize, collate, tabulate data."
+            },
+            {
+                id: 20,
+                title: "MEDIATE",
+                description: "Manage conflict, reconcile differences."
+            },
+            {
+                id: 21,
+                title: "MONITOR",
+                description: "Keep track of the movement of data, people, or things."
+            },
+            {
+                id: 22,
+                title: "MOTIVATE",
+                description: "Recruit involvement, mobilize energy, stimulate peak performance."
+            },
+            {
+                id: 23,
+                title: "NEGOTIATE",
+                description: "Bargain for rights or advantages."
+            },
+            {
+                id: 24,
+                title: "OBSERVE",
+                description: "Study, scrutinize, examine data, people, or things scientifically."
+            },
+            {
+                id: 25,
+                title: "PERCEIVE INTUITIVELY",
+                description: "Sense, show insight and foresight."
+            },
+            {
+                id: 26,
+                title: "PLAN, ORGANIZE",
+                description: "Define goals and objectives, schedule and develop projects or programs."
+            },
+            {
+                id: 27,
+                title: "PLANT, CULTIVATE",
+                description: "Grow food, flowers, trees or lawns. Prepare soil, plant, water, fertilize, weed, harvest, trim, prune, mow."
+            },
+            {
+                id: 28,
+                title: "PORTRAY IMAGES",
+                description: "Sketch, draw, illustrate, paint, photograph."
+            },
+            {
+                id: 29,
+                title: "PREPARE FOOD",
+                description: "Wash, cut, blend, bake, and arrange for nutrition, taste, and esthetics."
+            },
+            {
+                id: 30,
+                title: "PRODUCE SKILLED CRAFTS",
+                description: "Shape, weave, attach, etch, or carve ornamental gifts or display items."
+            },
+            {
+                id: 31,
+                title: "READ FOR INFORMATION",
+                description: "Research written resources efficiently and exhaustively."
+            },
+            {
+                id: 32,
+                title: "SELL",
+                description: "Promote a person, company, goods or services, convince of merits, raise money."
+            },
+            {
+                id: 33,
+                title: "STAGE SHOWS",
+                description: "Produce theatrical art, fashion, or trade shows and other events for public performance or display."
+            },
+            {
+                id: 34,
+                title: "SUPERVISE",
+                description: "Oversee, direct the work of others."
+            },
+            {
+                id: 35,
+                title: "SYNTHESIZE",
+                description: "Integrate ideas and information, combine diverse elements into a coherent whole."
+            },
+            {
+                id: 36,
+                title: "TEACH, TRAIN",
+                description: "Inform, explain, give instruction to students, employees, or customers."
+            },
+            {
+                id: 37,
+                title: "TEND ANIMALS",
+                description: "Feed, shelter, breed, train, or show domestic pets, or farm or ranch animals."
+            },
+            {
+                id: 38,
+                title: "TEST",
+                description: "Measure proficiency, quality, or validity. Check and double-check."
+            },
+            {
+                id: 39,
+                title: "TRANSPORT",
+                description: "Drive, lift, carry, or haul."
+            },
+            {
+                id: 40,
+                title: "TREAT, NURSE",
+                description: "Heal, cure patients or clients."
+            },
+            {
+                id: 41,
+                title: "USE CARPENTRY ABILITIES",
+                description: "Construct, maintain, or restore buildings, fittings, or furnishings."
+            },
+            {
+                id: 42,
+                title: "USE MECHANICAL ABILITIES",
+                description: "Assemble, tune, repair, or operate engines or other machinery."
+            },
+            {
+                id: 43,
+                title: "USE PHYSICAL COORDINATION AND AGILITY",
+                description: "Walk, run, climb, scale, jump, balance, aim, throw, catch, or hit."
+            },
+            {
+                id: 44,
+                title: "VISUALIZE",
+                description: "Imagine possibilities, see in mind's eye."
+            },
+            {
+                id: 45,
+                title: "WRITE",
+                description: "Compose reports, letters, articles, ads, stories, or educational materials."
+            }
+        ];
+
+        let currentSkill = 0;
+        let ratings = {};
+        let currentRound = 1;
+        let round2Skills = [];
+
+        function loadProgress() {
+            // Start fresh for beta testing
+            ratings = {};
+            currentRound = 1;
+            currentSkill = 0;
+            round2Skills = [];
+            
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            const skillsToUse = currentRound === 1 ? skills : round2Skills;
+            const skill = skillsToUse[currentSkill];
+            
+            let completed, totalSkills, percentage;
+            
+            if (currentRound === 1) {
+                // Round 1: count all skills that have any rating
+                completed = skills.filter(s => ratings[s.id]).length;
+                totalSkills = skills.length;
+                percentage = Math.round((completed / totalSkills) * 100);
+            } else {
+                // Round 2: count only round2Skills that have ratings
+                completed = round2Skills.filter(s => ratings[s.id]).length;
+                totalSkills = round2Skills.length;
+                percentage = Math.round((completed / totalSkills) * 100);
+            }
+
+            document.getElementById('progress-text').textContent = `${completed} of ${totalSkills} skills rated`;
+            document.getElementById('progress-bar').style.width = `${percentage}%`;
+            document.getElementById('progress-bar').textContent = `${percentage}%`;
+
+            const instructionElement = document.getElementById('round-instruction');
+            if (currentRound === 1) {
+                instructionElement.textContent = 'How much do you enjoy each of these activities?';
+            } else {
+                instructionElement.textContent = 'Now rate your competency level for each of these preferred skills:';
+            }
+
+            document.getElementById('skill-indicator').textContent = `${currentRound === 1 ? 'Round 1 - ' : 'Round 2 - '}Skill ${currentSkill + 1} of ${totalSkills}`;
+
+            const container = document.getElementById('skill-container');
+            const isRound2 = currentRound === 2;
+            
+            container.innerHTML = `
+                <div class="skill-card ${ratings[skill.id] ? 'completed' : ''} ${currentRound === 2 ? 'round-2' : ''}">
+                    ${currentRound === 2 ? '<div class="round-indicator">Final Round: Now rate your competence at each skill</div>' : ''}
+                    <div class="skill-number">${skill.id}</div>
+                    <div class="skill-title">${skill.title}</div>
+                    <div class="skill-description">${skill.description}</div>
+                    <div class="rating-options">
+                        <button class="rating-button love ${ratings[skill.id] === 'love' ? 'selected' : ''}"
+                                 onclick="setRating(${skill.id}, 'love')">
+                            <div class="traffic-light">
+                                <div class="smile-mouth"></div>
+                            </div>
+                            ${isRound2 ? "I'm really good at this" : "I love doing this"}
+                        </button>
+                        <button class="rating-button like ${ratings[skill.id] === 'like' ? 'selected' : ''}"
+                                 onclick="setRating(${skill.id}, 'like')">
+                            <div class="traffic-light">
+                                <div class="neutral-mouth"></div>
+                            </div>
+                            ${isRound2 ? "I'm pretty good at this" : "I like doing this"}
+                        </button>
+                        <button class="rating-button dislike ${ratings[skill.id] === 'dislike' ? 'selected' : ''}"
+                                 onclick="setRating(${skill.id}, 'dislike')">
+                            <div class="traffic-light">
+                                <div class="frown-mouth"></div>
+                            </div>
+                            ${isRound2 ? "I'm not skilled at this" : "I don't enjoy this"}
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('prev-button').disabled = currentSkill === 0;
+            document.getElementById('next-button').style.display = currentSkill === skillsToUse.length - 1 ? 'none' : 'inline-block';
+            
+            if (currentRound === 1) {
+                const round1Complete = skills.every(s => ratings[s.id]);
+                if (round1Complete) {
+                    document.getElementById('round2-button').style.display = 'inline-block';
+                    document.getElementById('results-button').style.display = 'none';
+                } else {
+                    document.getElementById('round2-button').style.display = 'none';
+                    document.getElementById('results-button').style.display = 'none';
+                }
+            } else {
+                const round2Complete = round2Skills.every(s => ratings[s.id]);
+                if (round2Complete) {
+                    document.getElementById('round2-button').style.display = 'none';
+                    document.getElementById('results-button').style.display = 'inline-block';
+                } else {
+                    document.getElementById('round2-button').style.display = 'none';
+                    document.getElementById('results-button').style.display = 'none';
+                }
+            }
+        }
+
+        function setRating(skillId, rating) {
+            ratings[skillId] = rating;
+            updateDisplay();
+        }
+
+        function nextSkill() {
+            const skillsToUse = currentRound === 1 ? skills : round2Skills;
+            if (currentSkill < skillsToUse.length - 1) {
+                currentSkill++;
+                updateDisplay();
+            }
+        }
+
+        function previousSkill() {
+            if (currentSkill > 0) {
+                currentSkill--;
+                updateDisplay();
+            }
+        }
+
+        function startRound2() {
+            const loveSkills = skills.filter(s => ratings[s.id] === 'love');
+            const likeSkills = skills.filter(s => ratings[s.id] === 'like');
+            
+            // If user has 5 or more "love" skills, only use those
+            // Otherwise, use both "love" and "like" skills
+            if (loveSkills.length >= 5) {
+                round2Skills = [...loveSkills];
+            } else {
+                round2Skills = [...loveSkills, ...likeSkills];
+            }
+            
+            currentRound = 2;
+            currentSkill = 0;
+            
+            // Clear ratings for Round 2 skills only, keeping Round 1 ratings for other skills
+            const round2SkillIds = round2Skills.map(s => s.id);
+            round2SkillIds.forEach(skillId => {
+                delete ratings[skillId];
+            });
+            
+            updateDisplay();
+        }
+
+        function viewResults() {
+            const round1Completed = skills.every(s => ratings[s.id] || round2Skills.some(r2 => r2.id === s.id));
+            const round2Completed = currentRound === 1 || round2Skills.every(s => ratings[s.id]);
+            
+            if (!round1Completed || !round2Completed) {
+                const totalSkills = currentRound === 1 ? skills.length : round2Skills.length;
+                const completed = currentRound === 1 ? 
+                    skills.filter(s => ratings[s.id]).length : 
+                    round2Skills.filter(s => ratings[s.id]).length;
+                alert(`Please complete all skills before viewing results. You have completed ${completed} of ${totalSkills} skills.`);
+                return;
+            }
+
+            // Sort Round 2 skills by competency level
+            const reallyGoodSkills = round2Skills.filter(s => ratings[s.id] === 'love');
+            const prettyGoodSkills = round2Skills.filter(s => ratings[s.id] === 'like');
+            const notSkilledSkills = round2Skills.filter(s => ratings[s.id] === 'dislike');
+
+            const container = document.getElementById('skill-container');
+            container.innerHTML = `
+                <div class="results-section">
+                    <h2 class="results-title">🎉 Skills Assessment Complete!</h2>
+                    
+                    <div style="background: #f0f8ff; padding: 20px; border-radius: 10px; margin-bottom: 30px; text-align: center; border: 2px solid #4a90e2;">
+                        <h3 style="color: #4a90e2; margin-bottom: 15px;">Assessment Summary</h3>
+                        <p style="margin-bottom: 10px;">✅ Round 1: Rated enjoyment for all ${skills.length} skills</p>
+                        <p style="margin-bottom: 10px;">✅ Round 2: Rated competency for ${round2Skills.length} preferred skills</p>
+                        <p style="font-weight: bold; color: #28a745;">Assessment Complete!</p>
+                    </div>
+
+                    <div style="background: #f0f8ff; padding: 20px; border-radius: 10px; margin-bottom: 30px; text-align: center; border: 2px solid #4a90e2;">
+                        <h3 style="color: #4a90e2; margin-bottom: 15px;">Your Skill Competency Summary</h3>
+                        <p style="margin-bottom: 10px;">From your ${round2Skills.length} preferred skills, here's how you rated your competency:</p>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px;">
+                            <div style="background: #f0fff0; padding: 15px; border-radius: 8px; border: 2px solid #00ff00;">
+                                <div style="font-size: 1.5em; font-weight: bold; color: #00aa00;">${reallyGoodSkills.length}</div>
+                                <div>Really Good At</div>
+                            </div>
+                            <div style="background: #fffff0; padding: 15px; border-radius: 8px; border: 2px solid #ffff00;">
+                                <div style="font-size: 1.5em; font-weight: bold; color: #cccc00;">${prettyGoodSkills.length}</div>
+                                <div>Pretty Good At</div>
+                            </div>
+                            <div style="background: #fff0f0; padding: 15px; border-radius: 8px; border: 2px solid #ff0000;">
+                                <div style="font-size: 1.5em; font-weight: bold; color: #cc0000;">${notSkilledSkills.length}</div>
+                                <div>Need Development</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 style="color: #00aa00;">🌟 Skills You're Really Good At:</h3>
+                    <ul class="skills-list">
+                        ${reallyGoodSkills.map(s => `<li><strong>${s.title}</strong> - ${s.description}</li>`).join('')}
+                        ${reallyGoodSkills.length === 0 ? '<li style="font-style: italic; color: #666;">No skills rated in this category</li>' : ''}
+                    </ul>
+
+                    <h3 style="color: #cccc00;">👍 Skills You're Pretty Good At:</h3>
+                    <ul class="skills-list">
+                        ${prettyGoodSkills.map(s => `<li><strong>${s.title}</strong> - ${s.description}</li>`).join('')}
+                        ${prettyGoodSkills.length === 0 ? '<li style="font-style: italic; color: #666;">No skills rated in this category</li>' : ''}
+                    </ul>
+
+                    ${notSkilledSkills.length > 0 ? `
+                    <h3 style="color: #cc0000;">📈 Skills That Need Development:</h3>
+                    <ul class="skills-list">
+                        ${notSkilledSkills.map(s => `<li><strong>${s.title}</strong> - ${s.description}</li>`).join('')}
+                    </ul>` : ''}
+
+                    <div class="results-summary">
+                        <h4 class="summary-title">🎯 Your Core Strength Profile</h4>
+                        <p class="summary-text">These are your strongest skills - the ones you both enjoy doing AND feel really competent at. These represent your core professional strengths.</p>
+                        ${reallyGoodSkills.length > 0 ? `
+                        <ul class="skills-list">
+                            ${reallyGoodSkills.map(s => `<li><strong>${s.title}</strong></li>`).join('')}
+                        </ul>
+                        <p style="margin-top: 15px; font-weight: bold; color: #28a745;">
+                            Focus on these ${reallyGoodSkills.length} core strength${reallyGoodSkills.length === 1 ? '' : 's'} for maximum impact in your career development.
+                        </p>` : `
+                        <p style="font-style: italic; color: #666; margin-top: 10px;">
+                            Consider developing your competency in skills you enjoy to build this core strength category. 
+                            Your "pretty good" skills are great candidates for further development.
+                        </p>`}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('prev-button').style.display = 'none';
+            document.getElementById('next-button').style.display = 'none';
+            document.getElementById('round2-button').style.display = 'none';
+            document.getElementById('results-button').style.display = 'none';
+            document.getElementById('skill-indicator').textContent = 'Assessment Complete';
+        }
+
+        loadProgress();
+    </script>
+</body>
+</html>

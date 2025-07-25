@@ -27,16 +27,16 @@
         }
         
         .instruction {
-            background: #f0f4ff;
+            background: #f0fff0;
             padding: 20px;
             border-radius: 10px;
             margin-bottom: 30px;
-            border: 2px solid #4a90e2;
+            border: 2px solid #28a745;
         }
         
         .instruction h3 {
             margin-top: 0;
-            color: #4a90e2;
+            color: #28a745;
         }
         
         .values-grid {
@@ -57,21 +57,52 @@
         }
         
         .value-item:hover {
-            border-color: #4a90e2;
-            background: #f0f8ff;
+            border-color: #28a745;
+            background: #f0fff0;
         }
         
+        /* FIXED: Much more visible selection styling */
         .value-item.selected {
-            border-color: #4a90e2;
-            background: #f0f8ff;
-            box-shadow: 0 2px 8px rgba(74, 144, 226, 0.2);
+            border-color: #28a745;
+            background: rgba(40, 167, 69, 0.5) !important;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+            transform: translateY(-1px);
         }
         
+        /* FIXED: Custom checkbox styling for better visibility */
         .value-checkbox {
             width: 20px;
             height: 20px;
             margin-top: 2px;
             cursor: pointer;
+            appearance: none;
+            border: 2px solid #28a745;
+            border-radius: 4px;
+            background: white;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        
+        .value-checkbox:hover {
+            border-color: #218838;
+            box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2);
+        }
+        
+        /* FIXED: Clear checkmark when checked */
+        .value-checkbox:checked {
+            background: #28a745;
+            border-color: #28a745;
+        }
+        
+        .value-checkbox:checked::after {
+            content: '✓';
+            position: absolute;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
         }
         
         .value-text {
@@ -81,7 +112,7 @@
         }
         
         .value-code {
-            background: #4a90e2;
+            background: #28a745;
             color: white;
             padding: 4px 8px;
             border-radius: 12px;
@@ -92,7 +123,7 @@
         }
         
         .action-button {
-            background: #4a90e2;
+            background: #28a745;
             color: white;
             border: none;
             padding: 12px 24px;
@@ -104,7 +135,7 @@
         }
         
         .action-button:hover {
-            background: #357abd;
+            background: #218838;
         }
         
         .action-button:disabled {
@@ -144,7 +175,7 @@
         .count-number {
             font-size: 1.8em;
             font-weight: bold;
-            color: #4a90e2;
+            color: #28a745;
         }
         
         .count-label {
@@ -158,7 +189,7 @@
             padding: 20px;
             background: #fff;
             border-radius: 10px;
-            border: 2px solid #4a90e2;
+            border: 2px solid #28a745;
         }
         
         .selection-grid {
@@ -178,13 +209,16 @@
         }
         
         .selection-option:hover {
-            border-color: #4a90e2;
-            background: #f0f8ff;
+            border-color: #28a745;
+            background: #f0fff0;
         }
         
+        /* FIXED: Much more visible selection for top 3 values */
         .selection-option.selected {
             border-color: #28a745;
-            background: #f8fff8;
+            background: rgba(40, 167, 69, 0.5) !important;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+            transform: translateY(-2px);
         }
         
         .top-values {
@@ -200,7 +234,7 @@
             padding: 20px;
             border-radius: 10px;
             margin-top: 20px;
-            border: 2px solid #4a90e2;
+            border: 2px solid #28a745;
         }
         
         .key-grid {
@@ -246,7 +280,7 @@
         
         <div style="text-align: center; margin: 30px 0;">
             <button class="action-button" onclick="calculateResults()" id="calculate-btn" disabled>
-                View My Results
+                View Results
             </button>
         </div>
         
@@ -260,12 +294,12 @@
             
             <div style="text-align: center; margin: 20px 0;">
                 <button class="action-button" onclick="showTopThree()">
-                    Select My Top 3 Values
+                    Select Your Top 3 Values
                 </button>
             </div>
             
             <div class="final-selection" id="final-selection">
-                <h4 style="color: #4a90e2;">Select your TOP THREE value categories:</h4>
+                <h4 style="color: #28a745;">Select your TOP THREE value categories:</h4>
                 <p>Choose the three categories that are most important to you:</p>
                 
                 <div class="selection-grid" id="selection-grid">
@@ -283,7 +317,7 @@
                     <div id="final-results"></div>
                     
                     <div class="code-key">
-                        <h4 style="color: #4a90e2; margin-top: 0;">📖 Values Code Key</h4>
+                        <h4 style="color: #28a745; margin-top: 0;">📖 Values Code Key</h4>
                         <div class="key-grid">
                             <div><strong>SE</strong> - Security</div>
                             <div><strong>CH</strong> - Challenge</div>

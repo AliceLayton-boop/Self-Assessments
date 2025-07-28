@@ -174,8 +174,8 @@
             height: 8px;
             background: #333;
             border-radius: 50%;
-            left: 14px;
-            top: 14px;
+            left: 10px;
+            top: 8px;
         }
         
         .traffic-light::after {
@@ -185,8 +185,8 @@
             height: 8px;
             background: #333;
             border-radius: 50%;
-            right: 14px;
-            top: 14px;
+            right: 10px;
+            top: 8px;
         }
         
         /* FIXED: Made heart eyes bigger and more visible */
@@ -200,8 +200,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            left: 9px;
-            top: 9px;
+            left: 5px;
+            top: 4px;
             color: #000000;
             font-weight: bold;
         }
@@ -216,8 +216,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            right: 9px;
-            top: 9px;
+            right: 5px;
+            top: 4px;
             color: #000000;
             font-weight: bold;
         }
@@ -397,28 +397,136 @@
                 padding: 10px;
             }
             
+            .assessment-title {
+                font-size: 1.8em;
+            }
+            
             .rating-options {
                 max-width: 100%;
             }
             
             .rating-button {
-                padding: 10px 15px;
-                font-size: 1em;
+                padding: 15px 12px;
+                font-size: 0.95em;
+                gap: 12px;
             }
             
             .traffic-light {
-                width: 40px;
-                height: 40px;
+                width: 45px;
+                height: 45px;
+                flex-shrink: 0;
+            }
+            
+            /* Mobile: Make eyes higher and farther apart */
+            .traffic-light::before {
+                width: 12px;
+                height: 12px;
+                left: 8px;
+                top: 6px;
+            }
+            
+            .traffic-light::after {
+                width: 12px;
+                height: 12px;
+                right: 8px;
+                top: 6px;
+            }
+            
+            /* Mobile: Override heart eyes to be even bigger */
+            .rating-button.love .traffic-light::before {
+                content: '♥';
+                width: 22px;
+                height: 22px;
+                font-size: 20px;
+                left: 2px;
+                top: 2px;
+                color: #000000 !important;
+                font-weight: bold;
+                background: transparent;
+                border-radius: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .rating-button.love .traffic-light::after {
+                content: '♥';
+                width: 22px;
+                height: 22px;
+                font-size: 20px;
+                right: 2px;
+                top: 2px;
+                color: #000000 !important;
+                font-weight: bold;
+                background: transparent;
+                border-radius: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            /* Mobile: Make mouths more visible */
+            .smile-mouth {
+                width: 24px;
+                height: 14px;
+                border: 5px solid #333;
+                border-top: none;
+                border-radius: 0 0 24px 24px;
+                bottom: 8px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .neutral-mouth {
+                width: 22px;
+                height: 12px;
+                border: 4px solid #333;
+                border-top: none;
+                border-radius: 0 0 22px 22px;
+                bottom: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .frown-mouth {
+                width: 24px;
+                height: 14px;
+                border: 5px solid #333;
+                border-bottom: none;
+                border-radius: 24px 24px 0 0;
+                bottom: 8px;
+                left: 50%;
+                transform: translateX(-50%);
             }
             
             .navigation {
                 flex-direction: column;
                 text-align: center;
+                gap: 10px;
             }
             
             .current-skill {
                 order: -1;
                 margin-bottom: 15px;
+                font-size: 0.9em;
+            }
+            
+            .nav-button {
+                min-width: 120px;
+                padding: 14px 20px;
+            }
+            
+            .skill-card {
+                padding: 20px;
+                margin: 15px 0;
+            }
+            
+            .skill-title {
+                font-size: 1.2em;
+            }
+            
+            .skill-description {
+                font-size: 0.95em;
             }
         }
     </style>
@@ -883,4 +991,76 @@
                 <div class="results-section">
                     <h2 class="results-title">🎉 Skills Assessment Complete!</h2>
                     
-                
+                    <div style="background: #f0f8ff; padding: 20px; border-radius: 10px; margin-bottom: 30px; text-align: center; border: 2px solid #4a90e2;">
+                        <h3 style="color: #4a90e2; margin-bottom: 15px;">Assessment Summary</h3>
+                        <p style="margin-bottom: 10px;">✅ Round 1: Rated enjoyment for all ${skills.length} skills</p>
+                        <p style="margin-bottom: 10px;">✅ Round 2: Rated competency for ${round2Skills.length} preferred skills</p>
+                        <p style="font-weight: bold; color: #28a745;">Assessment Complete!</p>
+                    </div>
+
+                    <div style="background: #f0f8ff; padding: 20px; border-radius: 10px; margin-bottom: 30px; text-align: center; border: 2px solid #4a90e2;">
+                        <h3 style="color: #4a90e2; margin-bottom: 15px;">Your Skill Competency Summary</h3>
+                        <p style="margin-bottom: 10px;">From your ${round2Skills.length} preferred skills, here's how you rated your competency:</p>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px;">
+                            <div style="background: #f0fff0; padding: 15px; border-radius: 8px; border: 2px solid #00ff00;">
+                                <div style="font-size: 1.5em; font-weight: bold; color: #00aa00;">${reallyGoodSkills.length}</div>
+                                <div>Really Good At</div>
+                            </div>
+                            <div style="background: #fffff0; padding: 15px; border-radius: 8px; border: 2px solid #ffff00;">
+                                <div style="font-size: 1.5em; font-weight: bold; color: #cccc00;">${prettyGoodSkills.length}</div>
+                                <div>Pretty Good At</div>
+                            </div>
+                            <div style="background: #fff0f0; padding: 15px; border-radius: 8px; border: 2px solid #ff0000;">
+                                <div style="font-size: 1.5em; font-weight: bold; color: #cc0000;">${notSkilledSkills.length}</div>
+                                <div>Need Development</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 style="color: #00aa00;">Skills You're Really Good At:</h3>
+                    <ul class="skills-list">
+                        ${reallyGoodSkills.map(s => `<li><strong>${s.title}</strong> - ${s.description}</li>`).join('')}
+                        ${reallyGoodSkills.length === 0 ? '<li style="font-style: italic; color: #666;">No skills rated in this category</li>' : ''}
+                    </ul>
+
+                    <h3 style="color: #cccc00;">Skills You're Pretty Good At:</h3>
+                    <ul class="skills-list">
+                        ${prettyGoodSkills.map(s => `<li><strong>${s.title}</strong> - ${s.description}</li>`).join('')}
+                        ${prettyGoodSkills.length === 0 ? '<li style="font-style: italic; color: #666;">No skills rated in this category</li>' : ''}
+                    </ul>
+
+                    ${notSkilledSkills.length > 0 ? `
+                    <h3 style="color: #cc0000;">Skills That Need Development:</h3>
+                    <ul class="skills-list">
+                        ${notSkilledSkills.map(s => `<li><strong>${s.title}</strong> - ${s.description}</li>`).join('')}
+                    </ul>` : ''}
+
+                    <div class="results-summary">
+                        <h4 class="summary-title">Your Core Strength Profile</h4>
+                        <p class="summary-text">These are your strongest skills - the ones you both enjoy doing AND feel really competent at. These represent your core professional strengths.</p>
+                        ${reallyGoodSkills.length > 0 ? `
+                        <ul class="skills-list">
+                            ${reallyGoodSkills.map(s => `<li><strong>${s.title}</strong></li>`).join('')}
+                        </ul>` : `
+                        <p style="font-style: italic; color: #666; margin-top: 10px;">
+                            Consider developing your competency in skills you enjoy to build this core strength category. 
+                            Your "pretty good" skills are great candidates for further development.
+                        </p>`}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('prev-button').style.display = 'none';
+            document.getElementById('next-button').style.display = 'none';
+            document.getElementById('round2-button').style.display = 'none';
+            document.getElementById('results-button').style.display = 'none';
+            document.getElementById('skill-indicator').textContent = 'Assessment Complete';
+        }
+
+        // Initialize the assessment when page loads
+        window.addEventListener('DOMContentLoaded', function() {
+            loadProgress();
+        });
+    </script>
+</body>
+</html>

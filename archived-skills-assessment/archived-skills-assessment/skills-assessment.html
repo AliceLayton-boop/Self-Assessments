@@ -1,0 +1,281 @@
+<div class="progress-section">
+        <div class="progress-text" id="progress-text">0 of 45 skills rated</div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar" style="width: 0%">0%</div>
+        </div>
+    </div>
+    
+    <div id="skills-container">
+        <div class="skills-grid">
+            <div style="text-align: center; padding: 40px; color: #666;">
+                Loading skills assessment...
+            </div>
+        </div>
+    </div>
+    
+    <div class="navigation">
+        <button class="nav-button" id="prev-button" onclick="previousPage()" disabled>Previous</button>
+        <div class="current-page" id="page-indicator">Page 1 of 9</div>
+        <button class="nav-button" id="next-button" onclick="nextPage()">Next</button>
+        <button class="nav-button results-button" id="round2-button" onclick="startRound2()" style="display: none;">Start Round 2</button>
+        <button class="nav-button results-button" id="results-button" onclick="viewResults()" style="display: none;">View Results</button>
+    </div>
+</div>
+
+<script>
+    // Skills data with updated text
+    const skillsData = [
+        { title: "Connecting people", description: "" },
+        { title: "Solving problems logically", description: "" },
+        { title: "Managing money", description: "" },
+        { title: "Organizing things, people or information", description: "" },
+        { title: "Creating music", description: "" },
+        { title: "Helping others reach their goals", description: "" },
+        { title: "Tracking the numbers", description: "" },
+        { title: "Innovating and inventing", description: "" },
+        { title: "Being in front of an audience", description: "" },
+        { title: "Assessing monetary value", description: "" },
+        { title: "Being a critical analyst", description: "" },
+        { title: "Making things more efficient", description: "" },
+        { title: "Brainstorming", description: "" },
+        { title: "Making people feel at home", description: "" },
+        { title: "Disrupting the status quo", description: "" },
+        { title: "Getting people to talk to you", description: "" },
+        { title: "Organizing events", description: "" },
+        { title: "Choosing a course of action", description: "" },
+        { title: "Record keeping", description: "" },
+        { title: "Resolving differences between people", description: "" },
+        { title: "Tracking people, things, or information", description: "" },
+        { title: "Getting people moving towards a goal", description: "" },
+        { title: "Working out a deal", description: "" },
+        { title: "Studying people, things, or data", description: "" },
+        { title: "Seeing the subtext", description: "" },
+        { title: "Managing logistics", description: "" },
+        { title: "Nurturing the natural world", description: "" },
+        { title: "Creating with images", description: "" },
+        { title: "Creating with food", description: "" },
+        { title: "Creating crafts", description: "" },
+        { title: "Doing the research", description: "" },
+        { title: "Persuading customers", description: "" },
+        { title: "Creating public events", description: "" },
+        { title: "Directing others", description: "" },
+        { title: "Seeing patterns that connect parts into a whole", description: "" },
+        { title: "Helping others learn", description: "" },
+        { title: "Caring for critters", description: "" },
+        { title: "Measuring performance", description: "" },
+        { title: "Driving", description: "" },
+        { title: "Helping the sick", description: "" },
+        { title: "Creating with wood", description: "" },
+        { title: "Handling machines", description: "" },
+        { title: "Being sporty", description: "" },
+        { title: "Seeing the possibilities", description: "" },
+        { title: "Creating with the written word", description: "" }
+    ];
+
+    // Assessment state
+    let currentPage = 0;
+    let currentRound = 1;
+    let round1Ratings = {}; // Store Round 1 ratings separately
+    let round2Ratings = {}; // Store Round 2 ratings separately
+    let currentSkills = skillsData; // Skills to display (changes in Round 2)
+    const skillsPerPage = 5;
+    let totalPages = Math.ceil(skillsData.length / skillsPerPage);
+
+    // Initialize assessment
+    document.addEventListener('DOMContentLoaded', function() {
+        displayCurrentPage();
+        updateProgressDisplay();
+    });
+
+    function displayCurrentPage() {
+        const container = document.getElementById('skills-container');
+        const startIndex = currentPage * skillsPerPage;
+        const endIndex = Math.min(startIndex + skillsPerPage, currentSkills.length);
+        
+        let html = '<div class="skills-grid">';
+        
+        for (let i = startIndex; i < endIndex; i++) {
+            const skill = currentSkills[i];
+            const skillId = skill.originalIndex !== undefined ? skill.originalIndex : i;
+            const currentRatings = currentRound === 1 ? round1Ratings : round2Ratings;
+            const isCompleted = currentRatings[skillId] !== undefined;
+            
+            html += `
+                <div class="skill-card ${isCompleted ? 'completed' : ''}">
+                    <div class="skill-number">${skill.originalIndex !== undefined ? skill.originalIndex + 1 : i + 1}</div>
+                    <div class="skill-title">${skill.title}</div>
+                    <div class="skill-description">${skill.description}</div>
+                    <div class="rating-options">
+            `;
+            
+            if (currentRound === 1) {
+                // Round 1: Love it / Like it / Dislike it
+                html += `
+                        <button class="rating-button love ${currentRatings[skillId] === 3 ? 'selected' : ''}" onclick="rateSkill(${skillId}, 3)">
+                            <div class="traffic-light">
+                                <div class="smile-mouth"></div>
+                            </div>
+                            <div class="rating-text">Love it</div>
+                        </button>
+                        <button class="rating-button like ${currentRatings[skillId] === 2 ? 'selected' : ''}" onclick="rateSkill(${skillId}, 2)">
+                            <div class="traffic-light">
+                                <div class="neutral-mouth"></div>
+                            </div>
+                            <div class="rating-text">Like it</div>
+                        </button>
+                        <button class="rating-button dislike ${currentRatings[skillId] === 1 ? 'selected' : ''}" onclick="rateSkill(${skillId}, 1)">
+                            <div class="traffic-light">
+                                <div class="frown-mouth"></div>
+                            </div>
+                            <div class="rating-text">Dislike it</div>
+                        </button>
+                `;
+            } else {
+                // Round 2: Expert / Skilled / Beginner
+                html += `
+                        <button class="rating-button expert ${currentRatings[skillId] === 3 ? 'selected' : ''}" onclick="rateSkill(${skillId}, 3)">
+                            <div class="rating-text">Expert</div>
+                        </button>
+                        <button class="rating-button skilled ${currentRatings[skillId] === 2 ? 'selected' : ''}" onclick="rateSkill(${skillId}, 2)">
+                            <div class="rating-text">Skilled</div>
+                        </button>
+                        <button class="rating-button beginner ${currentRatings[skillId] === 1 ? 'selected' : ''}" onclick="rateSkill(${skillId}, 1)">
+                            <div class="rating-text">Beginner</div>
+                        </button>
+                `;
+            }
+            
+            html += `
+                    </div>
+                </div>
+            `;
+        }
+        
+        html += '</div>';
+        container.innerHTML = html;
+        
+        updateNavigationButtons();
+        updatePageIndicator();
+    }
+
+    function rateSkill(skillId, rating) {
+        if (currentRound === 1) {
+            round1Ratings[skillId] = rating;
+        } else {
+            round2Ratings[skillId] = rating;
+        }
+        updateProgressDisplay();
+        
+        // Update the visual state of the current page
+        displayCurrentPage();
+    }
+
+    function updateProgressDisplay() {
+        const currentRatings = currentRound === 1 ? round1Ratings : round2Ratings;
+        const totalRatings = Object.keys(currentRatings).length;
+        const totalSkills = currentSkills.length;
+        const percentage = Math.round((totalRatings / totalSkills) * 100);
+        
+        document.getElementById('progress-text').textContent = `${totalRatings} of ${totalSkills} skills rated`;
+        document.getElementById('progress-bar').style.width = `${percentage}%`;
+        document.getElementById('progress-bar').textContent = `${percentage}%`;
+        
+        // Show Round 2 button when all skills are rated in Round 1
+        if (totalRatings === totalSkills && currentRound === 1) {
+            document.getElementById('round2-button').style.display = 'inline-block';
+        }
+        
+        // Show Results button when all skills are rated in Round 2
+        if (totalRatings === totalSkills && currentRound === 2) {
+            document.getElementById('results-button').style.display = 'inline-block';
+        }
+    }
+
+    function updateNavigationButtons() {
+        document.getElementById('prev-button').disabled = currentPage === 0;
+        document.getElementById('next-button').disabled = currentPage === totalPages - 1;
+    }
+
+    function updatePageIndicator() {
+        document.getElementById('page-indicator').textContent = `Page ${currentPage + 1} of ${totalPages}`;
+    }
+
+    function previousPage() {
+        if (currentPage > 0) {
+            currentPage--;
+            displayCurrentPage();
+        }
+    }
+
+    function nextPage() {
+        if (currentPage < totalPages - 1) {
+            currentPage++;
+            displayCurrentPage();
+        }
+    }
+
+    function startRound2() {
+        // Filter skills to only show "Love it" (3) and "Like it" (2) from Round 1
+        const likedSkills = [];
+        for (let skillId in round1Ratings) {
+            if (round1Ratings[skillId] >= 2) { // Love it or Like it
+                const skill = skillsData[skillId];
+                likedSkills.push({
+                    ...skill,
+                    originalIndex: parseInt(skillId)
+                });
+            }
+        }
+        
+        // Update current skills to only show the liked ones
+        currentSkills = likedSkills;
+        currentRound = 2;
+        currentPage = 0;
+        totalPages = Math.ceil(currentSkills.length / skillsPerPage);
+        
+        // Update instruction text for round 2
+        document.getElementById('round-instruction').textContent = `How skilled are you at each of these ${likedSkills.length} activities?`;
+        
+        // Hide Round 2 button and reset display
+        document.getElementById('round2-button').style.display = 'none';
+        displayCurrentPage();
+        updateProgressDisplay();
+    }
+
+    function viewResults() {
+        // Get top 5 skills from Round 2
+        const topSkills = [];
+        for (let skillId in round2Ratings) {
+            topSkills.push({
+                skillId: skillId,
+                skill: skillsData[skillId].title,
+                enjoymentRating: round1Ratings[skillId],
+                skillLevel: round2Ratings[skillId],
+                combinedScore: round1Ratings[skillId] + round2Ratings[skillId]
+            });
+        }
+        
+        // Sort by combined score and get top 5
+        topSkills.sort((a, b) => b.combinedScore - a.combinedScore);
+        const top5 = topSkills.slice(0, 5);
+        
+        // FIXED: Save to localStorage in dashboard format
+        const existingData = JSON.parse(localStorage.getItem('dashboardData') || '{}');
+        existingData.skillsAssessment = {
+            results: {
+                topSkills: top5,
+                top5Skills: top5,
+                assessmentComplete: true
+            },
+            completedDate: new Date().toISOString(),
+            assessmentType: 'skills',
+            source: 'internal'
+        };
+        localStorage.setItem('dashboardData', JSON.stringify(existingData));
+        
+        console.log('Skills assessment results saved to dashboard format');
+        
+        // Redirect to your user dashboard
+        window.location.href = '/findyourpeople';
+    }
+</script>
